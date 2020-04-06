@@ -1,0 +1,8 @@
+services:
+  - docker
+
+script:
+  - docker build -t jchorl/librespot .
+
+after_success:
+  - docker push jchorl/librespot
