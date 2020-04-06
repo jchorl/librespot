@@ -1,6 +1,9 @@
 services:
   - docker
 
+arch:
+  - arm64
+
 script:
   - docker build -t jchorl/librespot .
 
