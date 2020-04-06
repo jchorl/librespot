@@ -4,9 +4,11 @@ arch:
 - arm64
 script:
 - docker build -t jchorl/librespot .
-after_success:
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-- docker push jchorl/librespot
+deploy:
+- provider: script
+  script: bash deploy.sh $DOCKER_USERNAME $DOCKER_PASSWORD
+  on:
+    branch: master
 DOCKER_USERNAME:
   secure: O4OBev0Th1c5ZygnTmyZur24plWrF1SER/Z/FBzRsojAx9KpWwNharOyh8Ryn1m38xyp4OPjrQoBZalW00ezlJNuHE+pshdFY/j8j98FQlVDRM52+2f01rN/iQR3+tidhmmVEZRX+30VYm0V6/onweHHhJW90xdXb6zfjg6U1XI+FUZnCLhRPi2uCSgt/a9SDwtXBDytRrlPQyYcuautJtZM4rX2SWTGggxAWayX7LtWsv8UqolatJhCFlw87ihfxVoKLQV5voJqEY12yWMdwMXTBZXoYL9ZS9jAl83sNPTByX2Exo6ZU63TfhdLb4RuJisJbhQ/xQd0BjmBqN4awO6vN93/804B06M+TbSTd911dEVcDrf0nZBXvHuzDu9Vb6L/DDr8ii3nno/kfAK4VHkFgs8v3Lc1PgKQ6p2B/J2BkXv1RrnBcPQtNnwSxV4i9SSMsGqQPqscVayj1yJcs6liwC1mfZbWqoFTxwhuWCk0Lp9AIm7iXmr7NjKLjw60s2KjqU6O2Chd0DRTZNi12NkV2VZwuCh7ksjCnBtM3YKomlUsHVSzwM7Vj9kAlm2USlHOhSsuCaZwNa4xJGFz7LUwER6Npdovb+qkNHD51eWkAQJLf7WaYCXDFfnYOKEYaHU/eG+fyC1FwJrW9dcobnZoxJ2Yxdj2g1GulcHRWls=
 DOCKER_PASSWORD:
