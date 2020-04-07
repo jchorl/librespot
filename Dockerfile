@@ -1,4 +1,4 @@
-FROM rust:1.42
+FROM arm32v7/rust:1.42
 
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -12,7 +12,7 @@ RUN git checkout ef27b4bce371d0a41e7ee2263244ed141684ff9b
 
 RUN cargo build --release
 
-FROM ubuntu:19.10
+FROM arm32v7/ubuntu:19.10
 RUN apt-get update && apt-get install -y \
     libasound2
 COPY --from=0 /librespot/target/release/librespot /bin/
